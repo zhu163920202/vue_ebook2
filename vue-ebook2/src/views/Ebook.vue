@@ -1,21 +1,19 @@
 <template>
   <div class="ebook">
-    <div id="read">
-    </div>
+    <ebook-title></ebook-title>
+    <ebook-reader></ebook-reader>
+    <ebook-menu></ebook-menu>
   </div>
 </template>
 <script>
-import Epub from 'epubjs'
-global.ePub = Epub
+  import EbookTitle from '../components/ebook/EbookTitle'
+  import EbookMenu from '../components/ebook/EbookMenu'
+  import EbookReader from '../components/ebook/EbookReader'
 export default {
-  name: 'Ebook',
-  mounted () {
-    this.book = new Epub('/2018_Book_BigDataInContext.epub')
-    console.log(this.book)
-    this.book.renderTo('read', {
-      width: window.innerWidth,
-      height: window.innerHeight
-    }).display()
+  components: {
+    EbookReader,
+    EbookTitle,
+    EbookMenu
   }
 }
 </script>

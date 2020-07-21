@@ -1,14 +1,23 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Ebook from '../views/Ebook.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Ebook',
-    component: Ebook
+    redirect: '/ebook'
+  },
+  {
+    path: '/ebook',
+    component: () => import('../views/Ebook.vue'),
+    children: [
+      {
+        // 动态路由 fileName为接收的参数名称
+        path: ':fileName',
+        component: () => import('../components/ebook/EbookReader.vue')
+      }
+    ]
   }
 ]
 
